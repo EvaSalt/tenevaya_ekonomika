@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Теневая экономика | Аналитика Россия и мир</title>
+    <!-- Подключаем шрифты Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c10;
+            color: #eef2ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1e26;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b3f4f;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5f6a7a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Хедер */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #b2b9ff, #6b7bdb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: #ffb347;
+            background: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #cfddf5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffb347;
+            border-bottom: 2px solid #ffb347;
+            padding-bottom: 4px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #a8b6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #b9c3e0;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255, 180, 71, 0.15);
+            color: #ffb347;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        .btn {
+            display: inline-block;
+            background: #2d3346;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 32px;
+            transition: 0.2s;
+            border: 1px solid #4f5b7a;
+        }
+        .btn-primary {
+            background: #ffb347;
+            border-color: #ffb347;
+            color: #0a0c10;
+            box-shadow: 0 5px 15px rgba(255,180,71,0.2);
+        }
+        .btn-primary:hover {
+            background: #ffa01e;
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 48px;
+            text-align: center;
+            letter-spacing: -0.3px;
+        }
+        .section-title i {
+            color: #ffb347;
+            margin-right: 12px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: #12161f;
+            border-radius: 28px;
+            padding: 32px 24px;
+            transition: all 0.25s ease;
+            border: 1px solid #262c38;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #ffb34755;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: #ffb347;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .card p {
+            color: #b3c0df;
+            line-height: 1.5;
+        }
+
+        /* Стили для статистики (гибкие сетки) */
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 32px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .stat-item {
+            flex: 1;
+            background: #0e121b;
+            padding: 32px 20px;
+            border-radius: 32px;
+            border: 1px solid #292f3d;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffb347;
+            line-height: 1;
+        }
+        .stat-label {
+            margin-top: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            color: #9aa8c9;
+        }
+        .russian-stats {
+            margin-top: 60px;
+            background: linear-gradient(145deg, #0d1120 0%, #0a0e18 100%);
+            border-radius: 40px;
+            padding: 48px 32px;
+            border: 1px solid #2a3145;
+        }
+        .flag-icon {
+            font-size: 1.8rem;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #6c7a9e;
+            font-size: 0.85rem;
+            border-top: 1px solid #1f2532;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding: 50px 0;
+            }
+            .stats-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">ТЕНЕВАЯ<span>ЭКОНОМИКА</span></div>
+            <ul class="nav-links">
+                <li><a href="#causes">Причины</a></li>
+                <li><a href="#forms">Формы</a></li>
+                <li><a href="#consequences">Последствия</a></li>
+                <li><a href="#stats-russia">Россия</a></li>
+                <li><a href="#stats-world">Мир</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <div class="container">
+            <div class="hero fade-up">
+                <div class="badge"><i class="fas fa-eye-slash"></i> Актуальное исследование 2024</div>
+                <h1>Теневая экономика:<br> Россия в глобальном контексте</h1>
+                <p>Масштабы неформального сектора, скрытые доходы, потеря налогов и влияние на жизнь людей.</p>
+                <a href="#stats-russia" class="btn btn-primary"><i class="fas fa-chart-line"></i> Аналитика по РФ</a>
+            </div>
+        </div>
+
+        <!-- ПРИЧИНЫ -->
+        <section id="causes">
+            <div class="container">
+                <div class="section-title fade-up"><i class="fas fa-question-circle"></i> Почему возникает теневая экономика?</div>
+                <div class="grid-3">
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <h3>Высокие налоги</h3>
+                        <p>Страховые взносы (30%) и НДС (20%) подталкивают малый бизнес к «серым» схемам.</p>
+                    </div>
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-gavel"></i></div>
+                        <h3>Бюрократия и коррупция</h3>
+                        <p>Административные барьеры, проверки и поборы — фактор ухода в тень.</p>
+                    </div>
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Экономические шоки</h3>
+                        <p>Кризисы, санкции, инфляция заставляют граждан искать неофициальные заработки.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ФОРМЫ -->
+        <section id="forms" style="background: #0c0f16;">
+            <div class="container">
+                <div class="section-title fade-up"><i class="fas fa-layer-group"></i> Основные формы в России</div>
+                <div class="grid-3">
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-user-secret"></i></div>
+                        <h3>«Серая» зарплата</h3>
+                        <p>До 35-40% работников в малом бизнесе и строительстве получают часть зарплаты в конвертах.</p>
+                    </div>
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <h3>Неформальное предпринимательство</h3>
+                        <p>Репетиторы, мастера, такси без регистрации — миллионы самозанятых вне правового поля.</p>
+                    </div>
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-skull-crossbones"></i></div>
+                        <h3>Криминальный сектор</h3>
+                        <p>Наркотрафик, нелегальный игорный бизнес, контрабанда — оценка до 3–4% ВВП.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СТАТИСТИКА ПО РОССИИ (новый ключевой блок) -->
+        <section id="stats-russia">
+            <div class="container">
+                <div class="russian-stats fade-up">
+                    <div class="section-title" style="margin-bottom: 20px;">
+                        <i class="fas fa-flag-checkered flag-icon"></i> Теневая экономика в России 
+                        <span style="font-size: 1.2rem;">(оценки Росстата, Минфина, НИУ ВШЭ 2023–2024)</span>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="17.4" data-country="ru">0</div>
+                            <div class="stat-label">% от ВВП (скрытый сектор)</div>
+                            <small>По методологии Росстата / МВФ ~15–20%</small>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="19.2" data-country="ru">0</div>
+                            <div class="stat-label">млн человек</div>
+                            <small>Занято в неформальном секторе (~26% рабочей силы)</small>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="38" data-country="ru">0</div>
+                            <div class="stat-label">% «серых» зарплат в МСБ</div>
+                            <small>малый и средний бизнес, данные ЦБ РФ</small>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="4.2" data-country="ru">0</div>
+                            <div class="stat-label">трлн руб.</div>
+                            <small>Недополученные налоги (оценка 2023)</small>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 40px; color: #aab4d0; font-size: 0.85rem;">
+                        <i class="fas fa-chart-line"></i> По данным Росстата, доля теневой экономики РФ стабилизировалась на уровне 16–18% ВВП. 
+                        Наибольшая тенизация в строительстве (38%), торговле (28%) и услугах населению.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ГЛОБАЛЬНАЯ СТАТИСТИКА (мир) -->
+        <section id="stats-world">
+            <div class="container">
+                <div class="section-title fade-up"><i class="fas fa-globe-americas"></i> Глобальные оценки (МВФ / ОЭСР)</div>
+                <div class="stats-grid">
+                    <div class="stat-item fade-up">
+                        <div class="stat-number" data-target="23.5" data-country="world">0</div>
+                        <div class="stat-label">% от мирового ВВП (в среднем)</div>
+                    </div>
+                    <div class="stat-item fade-up">
+                        <div class="stat-number" data-target="38.9" data-country="world">0</div>
+                        <div class="stat-label">% в странах Африки</div>
+                        <small>самый высокий уровень</small>
+                    </div>
+                    <div class="stat-item fade-up">
+                        <div class="stat-number" data-target="15.2" data-country="world">0</div>
+                        <div class="stat-label">% в развитых странах (ЕС, США)</div>
+                    </div>
+                    <div class="stat-item fade-up">
+                        <div class="stat-number" data-target="3.2" data-country="world">0</div>
+                        <div class="stat-label">трлн долларов ежегодно</div>
+                        <small>объём скрытой экономики</small>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 48px; font-size: 0.85rem; color: #a2aec9;"><i class="fas fa-database"></i> Источники: IMF World Economic Outlook, OECD (2023–2024), Росстат, НИУ ВШЭ.</p>
+            </div>
+        </section>
+
+        <!-- ПОСЛЕДСТВИЯ -->
+        <section id="consequences">
+            <div class="container">
+                <div class="section-title fade-up"><i class="fas fa-exclamation-triangle"></i> Последствия для России и мира</div>
+                <div class="grid-3">
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h3>Дефицит бюджета</h3>
+                        <p>Недополученные налоги (триллионы рублей) — не построены больницы, дороги, школы.</p>
+                    </div>
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
+                        <h3>Нечестная конкуренция</h3>
+                        <p>«Серый» бизнес демпингует, вытесняя добросовестных налогоплательщиков.</p>
+                    </div>
+                    <div class="card fade-up">
+                        <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Уязвимость работников</h3>
+                        <p>Нет больничных, пенсионных накоплений, охраны труда — 19 млн человек в зоне риска.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ВЫВОД -->
+        <section>
+            <div class="container">
+                <div class="section-title fade-up"><i class="fas fa-graduation-cap"></i> Ключевые выводы проекта</div>
+                <div class="card fade-up" style="background: #0f131e;">
+                    <p style="font-size: 1.1rem; line-height: 1.6;">Теневая экономика в России — не только следствие криминала, но и адаптация к высоким налогам, коррупции и слабой защите прав собственности. Снижение «тени» требует не репрессий, а упрощения налогового администрирования, легализации самозанятых и повышения качества госуслуг. Опыт последних лет (налог на профессиональный доход) показывает постепенное обеление, но масштаб проблемы остается значительным.</p>
+                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <span style="background:#1f2535; padding: 4px 14px; border-radius: 20px;"><i class="fas-regular fa-chart-line"></i> Теневая занятость</span>
+                        <span style="background:#1f2535; padding: 4px 14px; border-radius: 20px;"><i class="fas fa-landmark"></i> Обналичивание</span>
+                        <span style="background:#1f2535; padding: 4px 14px; border-radius: 20px;"><i class="fas fa-hand-holding-usd"></i> Конвертная экономика</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Исследовательский проект «Теневая экономика: Россия в глобальном контексте». Данные носят оценочный характер, основаны на открытых источниках.</p>
+            <p style="margin-top: 10px;"><i class="fas fa-lightbulb"></i> Снижение теневого сектора — путь к справедливой экономике и достойному труду.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления элементов
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observerFade = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElements.forEach(el => observerFade.observe(el));
+
+        // Запускаем счетчики для всех блоков статистики (и РФ, и мира)
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let countersStarted = false;
+
+        const startAllCounters = () => {
+            statNumbers.forEach(el => {
+                const target = parseFloat(el.getAttribute('data-target'));
+                if (isNaN(target)) return;
+                let current = 0;
+                const step = target / 50;
+                const update = () => {
+                    current += step;
+                    if (current < target) {
+                        el.innerText = current.toFixed(1);
+                        requestAnimationFrame(update);
+                    } else {
+                        el.innerText = target.toFixed(1);
+                    }
+                };
+                update();
+            });
+        };
+
+        // Наблюдатель за секцией статистики (любая из них, например блок с Россией)
+        const statsSection = document.querySelector('#stats-russia');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersStarted) {
+                    countersStarted = true;
+                    startAllCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        if (statsSection) statsObserver.observe(statsSection);
+    </script>
+</body>
+</html>
